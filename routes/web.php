@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('products', Controller::class);
+Route::get('products', [ProductController::class, 'index']) -> name('products.index');
+
+Route::delete('/products/{id}', [ProductController::class, 'destroy']) -> name('products.destroy');
+
+Route::get('/products/edit/{id}', [ProductController::class, 'edit']) -> name('products.edit');
